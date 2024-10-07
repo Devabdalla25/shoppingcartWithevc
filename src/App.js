@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./component/Header";
+import { Route, Routes } from "react-router-dom";
+import Home from './component/pages/Home';
+import About from './component/pages/About';
+import Contact from './component/pages/contact';
+import Cart from "./component/pages/Cart";
+import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+const App=()=>{
+    const [cart,setcart]=useState();
+
+    
+    return <div className="container">
+    <Toaster />
+    <Header cart={cart} setcart={setcart}/>
+    <Routes>
+    <Route path="/"  element={<Home/>}/>
+    <Route path="/Contact"  element={<Contact/>}/>
+    <Route path="/About"  element={<About/>}/>
+    <Route path="/Cart"  element={<Cart setcart={setcart}/>}/>
+    </Routes>
     </div>
-  );
 }
 
 export default App;
